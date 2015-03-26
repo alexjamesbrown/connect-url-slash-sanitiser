@@ -5,6 +5,8 @@ module.exports = function(opts) {
 
 			var newPath = req.path.replace(/\/\//g, '/')
 
+			newPath = newPath.replace(/\/$/, "");
+
 			return res.redirect(301, req.url.replace(req.path, newPath))
 		}
 

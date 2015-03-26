@@ -27,5 +27,21 @@ describe('urlSlashSanitiser()', function() {
 
             assert(response.redirect.calledWith(301, 'http://localhost:3000/a/url/with/double/slashes'))
         })
+
+        it('redirects to url without trailing slash', function() {
+
+            var request = httpMocks.createRequest({
+                method: 'GET',
+                url: 'http://localhost:3000/a/url/with//double//slashes/and/trailing/'
+            });
+
+            var response = {
+                redirect: sinon.spy()
+            };
+
+            _urlSlashSanitiser(request, response);
+
+            assert(response.redirect.calledWith(301, 'http://localhost:3000/a/url/with/double/slashes/and/trailing'))
+        })
     })
 })
