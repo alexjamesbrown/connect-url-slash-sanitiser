@@ -1,0 +1,14 @@
+{
+  "name": "connect-url-slash-sanitiser",
+  "version": "0.0.1",
+  "description": "Removes double slashes // from URLs and redirects",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "author": "Alex Brown",
+  "devDependencies": {
+    "mocha": "^2.2.1",
+    "node-mocks-http": "^1.2.7"
+  }
+}
