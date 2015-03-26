@@ -1,15 +1,20 @@
 module.exports = function(opts) {
 
-	return function(req, res, next){
-		if(req.url.indexOf('//')>0){
+    opts = opts || {
+        removeTrailing: true
+    }
 
-			var newPath = req.path.replace(/\/\//g, '/')
+    return function(req, res, next) {
+        if (req.url.indexOf('//') > 0) {
 
-			newPath = newPath.replace(/\/$/, "");
+            var newPath = req.path.replace(/\/\//g, '/')
 
-			return res.redirect(301, req.url.replace(req.path, newPath))
-		}
+            if(opts.removeTrailing)
+            	newPath = newPath.replace(/\/$/, "");
 
-		return next()
-	};
+            return res.redirect(301, req.url.replace(req.path, newPath))
+        }
+
+        return next()
+    };
 };
